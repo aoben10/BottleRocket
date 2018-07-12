@@ -2,6 +2,7 @@ package com.theobencode.victoroben.bottlerocket
 
 import android.os.Bundle
 import com.google.gson.Gson
+import com.theobencode.victoroben.bottlerocket.common.BaseActivity
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {

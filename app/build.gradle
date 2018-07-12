@@ -31,6 +31,7 @@ ext.retrofitVersion = '2.4.0'
 ext.okHttpVersion = '3.9.1'
 ext.daggerVersion = '2.15'
 ext.orhanobutLogger = '2.2.0'
+ext.lifecycleVersion = '1.1.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -74,6 +75,8 @@ dependencies {
     // Databinding
     kapt "com.android.databinding:compiler:$gradle_plugin_version"
 
+    // Architecture components
+    implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

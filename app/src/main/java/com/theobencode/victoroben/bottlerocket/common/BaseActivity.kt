@@ -1,4 +1,4 @@
-package com.theobencode.victoroben.bottlerocket
+package com.theobencode.victoroben.bottlerocket.common
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
