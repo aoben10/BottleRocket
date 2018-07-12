@@ -6,6 +6,9 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
+/**
+ * Concrete implementation of [ImageLoader] interface for Picasso
+ * */
 class PicassoImageLoader(private val picasso: Picasso) : ImageLoader {
 
     override fun load(url: String, imageView: ImageView, @DrawableRes placeholder: Int, callback: (Boolean) -> Unit) {
