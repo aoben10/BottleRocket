@@ -9,6 +9,7 @@ import com.theobencode.victoroben.bottlerocket.data.repository.StoreRepository
 import com.theobencode.victoroben.bottlerocket.presentation.model.StoreEntity
 import com.theobencode.victoroben.bottlerocket.presentation.model.StoreMapper
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -20,6 +21,7 @@ class StoreViewModel @Inject constructor(private val storeRepository: StoreRepos
 
     fun fetchStore() {
         compositeDisposable.add(storeRepository.getStore()
+                .doOnSubscribe(::onLoading)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .map { storeMapper.mapToPresentation(it) }
@@ -33,6 +35,10 @@ class StoreViewModel @Inject constructor(private val storeRepository: StoreRepos
     private fun onError(throwable: Throwable) {
         Logger.e("An error occurred while fetching store data", throwable)
         store.postValue(Response(status = Status.ERROR, data = store.value?.data, message = throwable.message))
+    }
+
+    private fun onLoading(disposable: Disposable) {
+        store.postValue(Response(status = Status.LOADING, data = store.value?.data, message = null))
     }
 
     override fun onCleared() {
