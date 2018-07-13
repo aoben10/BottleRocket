@@ -1,6 +1,6 @@
 package com.theobencode.victoroben.bottlerocket.di.components
 
-import com.theobencode.victoroben.bottlerocket.common.BottleRocketApp
+import com.theobencode.victoroben.bottlerocket.presentation.BottleRocketApp
 import com.theobencode.victoroben.bottlerocket.di.modules.AppModule
 import dagger.Component
 import dagger.android.AndroidInjector

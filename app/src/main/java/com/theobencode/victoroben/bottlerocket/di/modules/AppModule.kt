@@ -1,17 +1,25 @@
 package com.theobencode.victoroben.bottlerocket.di.modules
 
 import android.app.Application
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
-import com.theobencode.victoroben.bottlerocket.MainActivity
-import com.theobencode.victoroben.bottlerocket.common.BottleRocketApp
 import com.theobencode.victoroben.bottlerocket.common.ImageLoader
 import com.theobencode.victoroben.bottlerocket.common.PicassoImageLoader
+import com.theobencode.victoroben.bottlerocket.data.repository.StoreRepository
+import com.theobencode.victoroben.bottlerocket.data.repository.StoreRepositoryImpl
+import com.theobencode.victoroben.bottlerocket.di.ViewModelKey
 import com.theobencode.victoroben.bottlerocket.di.scopes.PerActivity
+import com.theobencode.victoroben.bottlerocket.presentation.BottleRocketApp
+import com.theobencode.victoroben.bottlerocket.presentation.MainActivity
+import com.theobencode.victoroben.bottlerocket.presentation.StoreViewModel
+import com.theobencode.victoroben.bottlerocket.presentation.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import dagger.multibindings.IntoMap
 import javax.inject.Singleton
 
 /**
@@ -39,6 +47,17 @@ abstract class AppModule {
     @PerActivity
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun mainActivityInjector(): MainActivity
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StoreViewModel::class)
+    abstract fun provideStoreViewModel(viewModel: StoreViewModel): ViewModel
+
+    @Binds
+    abstract fun provideViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    abstract fun bindStoreRepo(storeRepository: StoreRepositoryImpl): StoreRepository
 
     @Module
     companion object {

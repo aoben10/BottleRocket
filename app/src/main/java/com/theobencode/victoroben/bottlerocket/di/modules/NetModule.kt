@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.theobencode.victoroben.bottlerocket.common.Constants.Companion.APP_DEBUG
 import com.theobencode.victoroben.bottlerocket.common.Constants.Companion.BASE_URL
-import com.theobencode.victoroben.bottlerocket.common.RestApiService
+import com.theobencode.victoroben.bottlerocket.data.remote.RestApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -27,7 +27,7 @@ class NetModule {
 
     @Provides
     @Singleton
-    fun provideGson(): Gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+    fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
     @Singleton

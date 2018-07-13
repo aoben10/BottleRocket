@@ -1,8 +1,8 @@
-package com.theobencode.victoroben.bottlerocket.data.net
+package com.theobencode.victoroben.bottlerocket.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class StoreItem(
+data class StoreItemData(
 
         @SerializedName("zipcode") val zipcode: String? = null,
 
