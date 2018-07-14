@@ -15,7 +15,6 @@ class StoresListAdapter(private val clickListener: StoreItemClickListener) : Rec
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreViewHolder {
         val binding = DataBindingUtil.inflate<ListItemStoreDetailsBinding>(LayoutInflater.from(parent.context), R.layout.list_item_store_details, parent, false)
-        binding.setListener { clickListener.onStoreClick() }
         return StoreViewHolder(binding)
     }
 
@@ -23,6 +22,7 @@ class StoresListAdapter(private val clickListener: StoreItemClickListener) : Rec
 
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
         holder.binding.store = stores[position]
+        holder.binding.setListener { clickListener.onStoreClick(stores[position]) }
         holder.binding.executePendingBindings()
     }
 
@@ -33,7 +33,7 @@ class StoresListAdapter(private val clickListener: StoreItemClickListener) : Rec
     }
 
     interface StoreItemClickListener {
-        fun onStoreClick()
+        fun onStoreClick(store: StoreItemEntity)
     }
 
     inner class StoreViewHolder(val binding: ListItemStoreDetailsBinding) : RecyclerView.ViewHolder(binding.root)

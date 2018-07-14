@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="store"
+            type="com.theobencode.victoroben.bottlerocket.presentation.model.StoreItemEntity" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        tools:context=".presentation.storedetails.StoreDetailsActivity">
+
+        <ImageView
+            android:id="@+id/storeLogo"
+            android:layout_width="90dp"
+            android:layout_height="56dp"
+            app:imageUrl="@{store.storeLogoURL}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/placeholder" />
+
+        <TextView
+            android:id="@+id/storeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{store.name}"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/storeLogo"
+            tools:text="Store name" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{store.address}"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/storeName"
+            app:layout_constraintTop_toBottomOf="@id/storeName"
+            tools:text="1 Infinite Loop" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/city_state_zip(store.city, store.state, store.zipcode)}"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/address"
+            app:layout_constraintTop_toBottomOf="@id/address"
+            tools:text="Atlanta, GA 30345" />
+
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{store.phone}"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/storeName"
+            app:layout_constraintTop_toBottomOf="@id/city"
+            tools:text="111-567-2321" />
+
+        <TextView
+            android:id="@+id/latLng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/lat_lng(store.latitude, store.longitude)}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/storeName"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/storeName"
+            tools:text="28.078052, -82.583301" />
+
+        <TextView
+            android:id="@+id/storeID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/storeid(store.storeID)}"
+            android:textSize="16sp"
+            app:layout_constraintRight_toRightOf="@id/latLng"
+            app:layout_constraintTop_toTopOf="@id/phoneNumber"
+            tools:text="StoreID: 4234" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

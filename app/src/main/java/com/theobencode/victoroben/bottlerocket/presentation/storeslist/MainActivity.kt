@@ -1,4 +1,4 @@
-package com.theobencode.victoroben.bottlerocket.presentation
+package com.theobencode.victoroben.bottlerocket.presentation.storeslist
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -12,10 +12,12 @@ import com.theobencode.victoroben.bottlerocket.R
 import com.theobencode.victoroben.bottlerocket.data.repository.Response
 import com.theobencode.victoroben.bottlerocket.data.repository.Status
 import com.theobencode.victoroben.bottlerocket.databinding.ActivityMainBinding
+import com.theobencode.victoroben.bottlerocket.presentation.BaseActivity
 import com.theobencode.victoroben.bottlerocket.presentation.extensions.startRefreshing
 import com.theobencode.victoroben.bottlerocket.presentation.extensions.stopRefreshing
 import com.theobencode.victoroben.bottlerocket.presentation.model.StoreEntity
-import com.theobencode.victoroben.bottlerocket.presentation.storeslist.StoresListAdapter
+import com.theobencode.victoroben.bottlerocket.presentation.model.StoreItemEntity
+import com.theobencode.victoroben.bottlerocket.presentation.storedetails.StoreDetailsActivity
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), StoresListAdapter.StoreItemClickListener {
@@ -25,12 +27,12 @@ class MainActivity : BaseActivity(), StoresListAdapter.StoreItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private var snackBar: Snackbar? = null
-    private lateinit var adapter: StoresListAdapter
+
+    private val adapter = StoresListAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel = ViewModelProviders.of(this, viewModelFactory)[StoreViewModel::class.java]
-        adapter = StoresListAdapter(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorAccent))
         binding.swipeRefreshLayout.setOnRefreshListener { viewModel.fetchStore() }
@@ -59,8 +61,8 @@ class MainActivity : BaseActivity(), StoresListAdapter.StoreItemClickListener {
         }
     }
 
-    override fun onStoreClick() {
-        Toast.makeText(this, "Store item", Toast.LENGTH_LONG).show()
+    override fun onStoreClick(store: StoreItemEntity) {
+        startActivity(StoreDetailsActivity.newIntent(this, store))
     }
 
     override fun onConnectionLost() {

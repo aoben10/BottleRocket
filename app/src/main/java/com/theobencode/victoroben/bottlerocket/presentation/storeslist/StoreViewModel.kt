@@ -1,4 +1,4 @@
-package com.theobencode.victoroben.bottlerocket.presentation
+package com.theobencode.victoroben.bottlerocket.presentation.storeslist
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

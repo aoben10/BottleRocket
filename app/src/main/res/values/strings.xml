@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BottleRocket</string>
     <string name="no_internet">No connection!</string>
+    <string name="storeid">StoreID: %s</string>
+    <string name="lat_lng">%1$s, %2$s</string>
+    <string name="city_state_zip">%1$s, %2$s %3$s</string>
 </resources>

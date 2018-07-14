@@ -2,7 +2,10 @@ package com.theobencode.victoroben.bottlerocket.presentation.model
 
 import com.theobencode.victoroben.bottlerocket.data.model.StoreData
 import com.theobencode.victoroben.bottlerocket.data.model.StoreItemData
+import java.io.Serializable
 import javax.inject.Inject
+
+const val STORE_EXTRA = "STORE"
 
 data class StoreEntity(val storeList: List<StoreItemEntity>?)
 
@@ -10,7 +13,7 @@ data class StoreItemEntity(val zipcode: String? = null, val address: String?,
                            val city: String? = null, val phone: String? = null,
                            val latitude: String? = null, val name: String? = null,
                            val storeLogoURL: String? = null, val state: String? = null,
-                           val storeID: String? = null, val longitude: String? = null)
+                           val storeID: String? = null, val longitude: String? = null) : Serializable
 
 
 class StoreMapper @Inject constructor(private val storeListMapper: StoreListMapper) {

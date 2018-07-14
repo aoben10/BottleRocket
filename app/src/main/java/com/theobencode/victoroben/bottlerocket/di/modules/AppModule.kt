@@ -8,9 +8,10 @@ import com.theobencode.victoroben.bottlerocket.data.repository.StoreRepositoryIm
 import com.theobencode.victoroben.bottlerocket.di.ViewModelKey
 import com.theobencode.victoroben.bottlerocket.di.scopes.PerActivity
 import com.theobencode.victoroben.bottlerocket.presentation.BottleRocketApp
-import com.theobencode.victoroben.bottlerocket.presentation.MainActivity
-import com.theobencode.victoroben.bottlerocket.presentation.StoreViewModel
 import com.theobencode.victoroben.bottlerocket.presentation.ViewModelFactory
+import com.theobencode.victoroben.bottlerocket.presentation.storedetails.StoreDetailsActivity
+import com.theobencode.victoroben.bottlerocket.presentation.storeslist.MainActivity
+import com.theobencode.victoroben.bottlerocket.presentation.storeslist.StoreViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -44,6 +45,10 @@ abstract class AppModule {
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun mainActivityInjector(): MainActivity
 
+    @PerActivity
+    @ContributesAndroidInjector(modules = [StoreDetailsModule::class])
+    abstract fun storeDetailsInjector(): StoreDetailsActivity
+
     @Binds
     @IntoMap
     @ViewModelKey(StoreViewModel::class)
@@ -53,6 +58,6 @@ abstract class AppModule {
     abstract fun provideViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds
-    abstract fun bindStoreRepo(storeRepository: StoreRepositoryImpl): StoreRepository
+    abstract fun bindStoreRepository(storeRepository: StoreRepositoryImpl): StoreRepository
 
 }

@@ -38,6 +38,7 @@ ext.okHttpVersion = '3.9.1'
 ext.daggerVersion = '2.15'
 ext.orhanobutLogger = '2.2.0'
 ext.lifecycleVersion = '1.1.1'
+ext.rxpaper = '1.2.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -61,6 +62,9 @@ dependencies {
     // Rxjava
     implementation "io.reactivex.rxjava2:rxjava:2.1.9"
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
+    // Paperbook
+    implementation "com.github.pakoito:RxPaper2:$rxpaper"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
