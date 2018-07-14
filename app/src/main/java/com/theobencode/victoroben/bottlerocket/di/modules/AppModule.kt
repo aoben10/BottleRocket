@@ -3,9 +3,6 @@ package com.theobencode.victoroben.bottlerocket.di.modules
 import android.app.Application
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.squareup.picasso.Picasso
-import com.theobencode.victoroben.bottlerocket.common.ImageLoader
-import com.theobencode.victoroben.bottlerocket.common.PicassoImageLoader
 import com.theobencode.victoroben.bottlerocket.data.repository.StoreRepository
 import com.theobencode.victoroben.bottlerocket.data.repository.StoreRepositoryImpl
 import com.theobencode.victoroben.bottlerocket.di.ViewModelKey
@@ -16,7 +13,6 @@ import com.theobencode.victoroben.bottlerocket.presentation.StoreViewModel
 import com.theobencode.victoroben.bottlerocket.presentation.ViewModelFactory
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import dagger.multibindings.IntoMap
@@ -58,21 +54,5 @@ abstract class AppModule {
 
     @Binds
     abstract fun bindStoreRepo(storeRepository: StoreRepositoryImpl): StoreRepository
-
-    @Module
-    companion object {
-
-        @Singleton
-        @Provides
-        fun provideImageLoader(picasso: Picasso): ImageLoader {
-            return PicassoImageLoader(picasso)
-        }
-
-        @Singleton
-        @Provides
-        internal fun providePicasso(app: BottleRocketApp): Picasso {
-            return Picasso.Builder(app).build()
-        }
-    }
 
 }

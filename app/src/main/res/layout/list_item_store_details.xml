@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="store"
+            type="com.theobencode.victoroben.bottlerocket.presentation.model.StoreItemEntity" />
+
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/store_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:elevation="8dp"
+        android:onClick="@{v -> listener.onClick(v)}"
+        app:cardCornerRadius="6dp"
+        app:cardUseCompatPadding="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:id="@+id/storeLogo"
+                android:layout_width="90dp"
+                android:layout_height="56dp"
+                app:imageUrl="@{store.storeLogoURL}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/storeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{store.name}"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/storeLogo"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Store name" />
+
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{store.city}"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="@id/storeName"
+                app:layout_constraintTop_toBottomOf="@id/storeName"
+                tools:text="Atlanta" />
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{store.state}"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toRightOf="@id/city"
+                app:layout_constraintTop_toBottomOf="@id/storeName"
+                tools:text="GA" />
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{store.phone}"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="@id/storeName"
+                app:layout_constraintTop_toBottomOf="@id/city"
+                tools:text="111-567-2321" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

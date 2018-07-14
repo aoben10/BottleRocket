@@ -55,13 +55,13 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     /**
-     * Override as needed on activities that need to be notified on connection changes
+     * Override as needed in activities that need to be notified on connection changes
      */
-    fun onConnectionLost() {
+    open fun onConnectionLost() {
 
     }
 
-    fun onConnectionRestored() {
-        
+    open fun onConnectionRestored() {
+
     }
 }
