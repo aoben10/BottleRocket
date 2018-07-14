@@ -33,7 +33,7 @@ class StoreViewModel @Inject constructor(private val storeRepository: StoreRepos
     }
 
     private fun onError(throwable: Throwable) {
-        Logger.e("An error occurred while fetching store data", throwable)
+        Logger.e("An error occurred while fetching store data $throwable")
         store.postValue(Response(status = Status.ERROR, data = store.value?.data, message = throwable.message))
     }
 
